@@ -1,0 +1,214 @@
+@import '_normalize'
+@import 'rupture'
+
+@import 's-grid-settings'
+@import 's-grid-functions'
+@import 's-grid-classes'
+
+html, body, p, h1, h2, h3, h4, h5, h6
+    font-family 'Raleway' sans-serif
+
+.back-to-top-btn
+    background #e6e6e6
+    color #000
+    position fixed
+    bottom 0
+    right 0.9375rem
+    width 3.125rem
+    height 2.5rem
+    line-height 2.5rem
+    text-align center
+    cursor pointer
+    transition all .4s
+    border-radius 0.1875rem 0.1875rem 0 0
+    z-index 9999
+    transform translateZ(0)
+    &.hidden
+        display none
+header
+    width 100%
+    height rem-calc(40px)
+    background-color #1E2528
+    padding-left rem-calc(60px)
+    padding-right rem-calc(60px)
+    grid()
+    justify-content center
+    +below(rem-calc(1000px))
+        padding-left rem-calc(15px)
+        padding-right rem-calc(15px)
+    .logo, .menu
+        margin: 0;
+    .logo
+        cell(columns / 2, columns, g: 0);
+        font-weight 800
+        color #fff
+        h1
+            margin 0
+            font-size rem-calc(22px)
+    .menu
+        cell(columns / 2, columns, g: 0);
+        color #fff
+        font-size rem-calc(22px)
+        text-align right
+        a
+           color inherit
+    .logo, .menu
+        line-height rem-calc(40px)
+
+.sticky-header
+    position fixed
+    background-color #1E2528
+    color #fff
+    width 100%
+    transition transform .5s
+    transform translate3d(0, -100%, 0)
+    z-index 999
+    padding-top rem-calc(15px)
+    padding-bottom rem-calc(15px)
+    .smenu
+        padding-left rem-calc(30px)
+        padding-right rem-calc(30px)
+        font-size rem-calc(20px)
+        font-weight 800
+        .right
+            float right
+            line-height rem-calc(24)
+        a
+            color #fff
+            padding-left rem-calc(10px)
+            padding-right rem-calc(10px)
+            text-decoration none
+        small
+            font-weight 600
+            padding-left rem-calc(30px)
+            display inline-block
+            font-size rem-calc(14px)
+    +below(rem-calc(1100px))
+        text-align center
+        .smenu
+            a
+                display inline-block
+                padding-top rem-calc(5px)
+                padding-bottom rem-calc(5px)
+    &.active
+        transform translate3d(0, 0, 0)
+.jumbo
+    padding-top rem-calc(180px)
+    padding-bottom rem-calc(145px)
+    text-align center
+    font-weight 800
+    color #fff
+    background linear-gradient(to bottom right, #F06060 , #da5757);
+    font-size rem-calc(25px)
+    background-image url('/bg.png')
+    background-position 50%
+    background-size cover
+    .buttons
+        margin-top rem-calc(30px)
+    h2
+        font-size rem-calc(45px)
+        font-weight 900
+    @media screen and (min-width: rem-calc(breakpoints[md]))
+        font-size rem-calc(45px)
+        h2
+            font-size rem-calc(86px)
+main
+    width 100%
+    max-width rem-calc(900px)
+    margin 0 auto
+    padding rem-calc(15px) rem-calc(40px)
+
+.docs
+    margin-bottom rem-calc(20px)
+    padding-top rem-calc(40px)
+    padding-bottom rem-calc(40px)
+    h2, h3
+        margin-bottom rem-calc(15px)
+        font-weight 800
+    h2
+        font-size rem-calc(40px)
+        margin-top rem-calc(70px)
+        margin-bottom rem-calc(20px)
+    h3
+        font-size rem-calc(26px)
+        margin-top rem-calc(70px)
+        margin-bottom rem-calc(20px)
+    h4
+        margin-top rem-calc(30px)
+        margin-bottom rem-calc(30px)
+    pre
+        margin-top rem-calc(15px)
+        margin-bottom rem-calc(15px)
+        code
+            font-size rem-calc(13px)
+            padding rem-calc(20px) rem-calc(35px)
+            border-radius rem-calc(3px)
+    ul
+        margin-left rem-calc(20px)
+        margin-top rem-calc(20px)
+        margin-bottom rem-calc(20px)
+        li
+            code
+                background-color #f1f1f1
+                padding-left rem-calc(5px)
+                padding-right rem-calc(5px)
+    .demo-grid
+        background-color rgba(#23222D, 0.1)
+        margin-bottom rem-calc(40px)
+    .demo-item
+        background-color rgba(#23222D, 0.1)
+        padding rem-calc(20px)
+        border-radius rem-calc(3px)
+        font-size rem-calc(14px)
+    a
+        color #F06060
+        text-decoration none
+    hr
+        margin-bottom rem-calc(20px)
+        display block
+        height 1px
+        border 0
+        border-top 1px solid #f1f1f1
+        padding 0
+    section
+        grid()
+        aside, main
+            cell(columns, columns, g: gutter)
+        @media screen and (min-width: rem-calc(breakpoints[md]))
+            aside
+                cell(columns / 3, columns, g: gutter)
+            main
+                cell((columns / 3) * 2, columns, g: gutter)
+
+.btn
+    font-family inherit
+    font-size rem-calc(16px)
+    text-decoration none
+    color inherit
+    background none
+    cursor pointer
+    padding rem-calc(15px) rem-calc(40px)
+    display inline-block
+    margin rem-calc(15px) rem-calc(30px)
+    letter-spacing rem-calc(1px)
+    font-weight 700
+    outline none
+    position relative
+    transition all 0.3s
+
+.btn-jumbo
+    background transparent
+    color #fff
+    margin-top rem-calc(30px)
+    border rem-calc(3px) solid #fff
+    border-radius rem-calc(3px)
+    &:hover, &.active
+        background-color #fff
+        color #000
+
+// for demo purposes
+
+.normal-item
+    order 1
+.my-special-item
+    order 0

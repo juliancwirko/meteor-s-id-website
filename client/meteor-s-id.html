@@ -1,0 +1,78 @@
+<head>
+    <meta charset="utf-8">
+    <title>Simple Accounts for Meteor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,200,300,500,700,600,800,900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    {{> stickyHeder}}
+    {{> main}}
+    {{> backBtn}}
+</body>
+
+<template name="stickyHeder">
+    <div class="sticky-header js-sticky-header">
+        <div class="smenu">
+            <span><a href="#" class="js-go-top">sId</a></span>
+            <small class="right">
+                <a class="js-go-to-paragraph" href="#usage">Usage</a>
+                <a href="http://s-id-demo.meteor.com">Demo</a>
+                <a class="js-go-to-paragraph" href="#fullconfig">Config</a>
+                <a class="js-go-to-paragraph" href="#logtheuserinusinganexternalservice">External Services</a>
+                <a class="js-go-to-paragraph" href="#styling">Styling</a>
+            </small>
+        </div>
+    </div>
+</template>
+
+<template name="backBtn">
+    <div class="back-to-top-btn js-back-to-top-btn hidden">
+        <i class="fa fa-angle-up"></i>
+    </div>
+</template>
+
+<template name="main">
+    <header>
+        <div class="logo">
+            <h1>sId</h1>
+        </div>
+        <div class="menu">
+            <a href="http://julian.io"><i class="fa fa-fw fa-home"></i></a>
+            <a href="https://twitter.com/JulianCwirko"><i class="fa fa-fw fa-twitter"></i></a>
+            <a href="https://github.com/juliancwirko"><i class="fa fa-fw fa-github"></i></a>
+        </div>
+    </header>
+    <section class="jumbo">
+        <h2>Accounts for Meteor.js</h2>
+        <span>simple customization</span>
+        <small>...login with Google, Twitter, GitHub</small>
+        <div class="buttons">
+            <a href="#" class="btn btn-jumbo js-go-to-install"><i class="fa fa-power-off"></i> Install</a>
+            <a href="http://s-id-demo.meteor.com" class="btn btn-jumbo"><i class="fa fa-rocket"></i> Demo</a>
+            <a href="https://github.com/juliancwirko/meteor-s-id" class="btn btn-jumbo"><i class="fa fa-github"></i> GitHub</a>
+        </div>
+    </section>
+    <main>
+        {{> docs}}
+    </main>
+</template>
+
+<template name="docs">
+    <section class="docs">
+        {{#if mdDocs}}
+            {{{mdDocs}}}
+        {{else}}
+            {{> loader}}
+        {{/if}}
+    </section>
+</template>
+
+<template name="loader">
+    <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+</template>
