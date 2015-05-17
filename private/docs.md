@@ -104,8 +104,8 @@ You can then use (somewhere in your templates):
 {{#if currentUser}}
     <a href="#" class="js-logout">Logout</a></li>
 {{else}}
-    <a href="{{pathFor 'sIdLoginView'}}">Login</a>
-    <a href="{{pathFor 'sIdRegisterView'}}">Register</a>
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
 {{/if}}
 ```
 
