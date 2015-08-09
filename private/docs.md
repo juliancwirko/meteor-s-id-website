@@ -1,6 +1,6 @@
 ## Simple Accounts system for Meteor
 
-This is a simple and custom Accounts system because we don't need any complicated logic and Bootstrap classes here... You can login/register using password or 3rd party OAuth services (**Google, Twitter, Facebook, GitHub**).
+This is a simple and custom Accounts system with config file. It is not dependant on routing, but there are examples how to configure your routes with Iron Router and Flow Router. You can configure your alerts/messages, validators and callback functions.
 
 ### Demo
 
@@ -22,13 +22,6 @@ Just add the package:
 ```
 meteor add juliancwirko:s-id
 ```
-
-You can configure your routes for each view if you want. You can use Iron Router or Flow Router it is up to you because. Here you will get only templates and couple of config functions which will alow you to configure your login, register callbacks. Templates to use:
-
-- **sIdLoginView**
-- **sIdRegisterView**
-- **sIdForgotPasswordView**
-- **sIdResetPasswordView**
 
 ### Full Config
 All is optional and here you can overwrite defaults.
@@ -73,6 +66,50 @@ Meteor.startup(function () {
                 'facebook': 'Facebook Access'
             }
         },
+        // turn on e-mail verification.. without it user is still able to login, you can block it in the app by
+        // checking e-mail verified field
+        emailVerification: true,
+        // you can pass empty messages object to turn it off
+        messages: {
+            verifyEmail: 'Verify your e-mail address',
+            verifiedEmail: 'Your email address was verified. Thanks!',
+            somethingWrong: 'Something went wrong! Here is the error message: ',
+            fillAllFields: 'Fill in all fields!',
+            loginNow: 'You can login now.',
+            sending: 'Sending...',
+            validEmail: 'E-mail should be a valid e-mail address!',
+            validPassword: 'Password should be at least one number, one lowercase and one uppercase letter and at least six characters!',
+            validUsername: 'Username should be at least 3 characters long and max 12 characters!',
+            // placeholders
+            usernamePlaceholder: 'Username',
+            passwordPlaceholder: 'Password',
+            emailPlaceholder: 'E-mail',
+            newPasswordPlaceholder: 'New password'
+        },
+        // should return true or false - you can overwrite these functions in your app sId config...
+        // also remember to adjust your error messages (config above)
+        validateUsername: function (username) {
+            var min = 3;
+            var max = 12;
+            if (username && username.length >= min && username.length <= max) {
+                return true;
+            }
+            return false;
+        },
+        validatePassword: function (password) {
+            var r = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+            if (password && r.test(password)) {
+                return true;
+            }
+            return false;
+        },
+        validateEmail: function (email) {
+            var r = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+            if (r.test(email)) {
+                return true;
+            }
+            return false;
+        },
         onLogged: function () {
             // callback after successful login
             // it could be for example Router.go('/') or FlowRouter.go('/dashboard') or any other
@@ -99,6 +136,67 @@ Meteor.startup(function () {
     });
 });
 ```
+
+You can configure/overwrite here validator functions and messages strings. If you want to remove username, password or e-mail validation just 'return true' in a particular validator function.
+
+You can configure your routes for each view if you want. You can use Iron Router or Flow Router it is up to you because here you will get only templates and couple of config functions which will alow you to configure your login, register callbacks. Below you will find some examples for Iron Router and Flow Router.
+Templates to use are:
+
+- **sIdLoginView**
+- **sIdRegisterView**
+- **sIdForgotPasswordView**
+- **sIdResetPasswordView**
+
+### Example routes which you can use in your app (Iron Router example)
+Routes names are important here.
+
+```javascript
+Router.map(function() {
+    this.route('sIdLoginView', {
+        path: '/login',
+    });
+    this.route('sIdRegisterView', {
+        path: '/register'
+    });
+    this.route('sIdForgotPasswordView', {
+        path: '/forgot-password'
+    });
+    this.route('sIdResetPasswordView', {
+        path: '/reset-password/:resetToken'
+    });
+});
+```
+
+### Example routes which you can use in your app (Flow Router and Blaze Layout example)
+
+```javascript
+FlowRouter.route('/login', {
+    name: 'sIdLoginView',
+    action: function () {
+        BlazeLayout.render('layout', {main: 'sIdLoginView'});
+    }
+});
+FlowRouter.route('/register', {
+    name: 'sIdRegisterView',
+    action: function () {
+        BlazeLayout.render('layout', {main: 'sIdRegisterView'});
+    }
+});
+FlowRouter.route('/forgot-password', {
+    name: 'sIdForgotPasswordView',
+    action: function () {
+        BlazeLayout.render('layout', {main: 'sIdForgotPasswordView'});
+    }
+});
+FlowRouter.route('/reset-password', {
+    name: 'sIdResetPasswordView',
+    action: function () {
+        BlazeLayout.render('layout', {main: 'sIdResetPasswordView'});
+    }
+});
+```
+
+Basicaly you just use ready to go templates from the package and some callbacks which you can configure.
 
 You can then use (somewhere in your templates):
 
@@ -215,7 +313,7 @@ Accounts.onCreateUser(function (options, user) {
 
 ### Styling
 
-There will be more customization in the future. For now you can use mainClass as a namespace for DOM elements which has its own ids and classes. As you can see if you provide your own css class in the config you will get simple unstyled template.
+There will be more customization in the future. For now you can use 'mainClass' (sId config above) as a namespace for DOM elements which has its own ids and classes. As you can see if you provide your own css class in the config you will get simple unstyled template.
 
 You can take the package style.css file as a reference.
 
@@ -235,58 +333,9 @@ Meteor.startup(function () {
 });
 ```
 
-### Example routes which you can use in your app (Iron Router example)
-Routes names are important here.
-
-```javascript
-Router.map(function() {
-    this.route('sIdLoginView', {
-        path: '/login',
-    });
-    this.route('sIdRegisterView', {
-        path: '/register'
-    });
-    this.route('sIdForgotPasswordView', {
-        path: '/forgot-password'
-    });
-    this.route('sIdResetPasswordView', {
-        path: '/reset-password/:resetToken'
-    });
-});
-```
-
-### Example routes which you can use in your app (Flow Router and Flow Layout example)
-
-```javascript
-FlowRouter.route('/login', {
-    name: 'sIdLoginView',
-    action: function () {
-        FlowLayout.render('layout', {main: 'sIdLoginView'});
-    }
-});
-FlowRouter.route('/register', {
-    name: 'sIdRegisterView',
-    action: function () {
-        FlowLayout.render('layout', {main: 'sIdRegisterView'});
-    }
-});
-FlowRouter.route('/forgot-password', {
-    name: 'sIdForgotPasswordView',
-    action: function () {
-        FlowLayout.render('layout', {main: 'sIdForgotPasswordView'});
-    }
-});
-FlowRouter.route('/reset-password', {
-    name: 'sIdResetPasswordView',
-    action: function () {
-        FlowLayout.render('layout', {main: 'sIdResetPasswordView'});
-    }
-});
-```
-
-Basicaly you just use ready to go templates from the package and some callbacks which you can configure.
-
 ### Changelog
+
+- v3.0.0 added email verification option, added messages config, added validators config, docs changes
 
 - v2.0.0 added Facebook service (thanks to [@yankeyhotel](https://github.com/yankeyhotel)), settings.json structure changed (see example above)
 
@@ -326,3 +375,4 @@ $ meteor
 * [Yeoman generator for Zurb Foundation 5](https://github.com/juliancwirko/generator-zf5)
 * [Free, very simple and clean starter theme for your Ghost blog](https://github.com/juliancwirko/abc)
 * [HTML only and GruntJS based project scaffold](https://github.com/juliancwirko/html-project)
+* [React boilerplate with s-Grid and Webpack](https://github.com/juliancwirko/react-boilerplate)
