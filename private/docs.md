@@ -69,6 +69,8 @@ Meteor.startup(function () {
         // turn on e-mail verification.. without it user is still able to login, you can block it in the app by
         // checking e-mail verified field
         emailVerification: true,
+        // change it to 'true' if you need only e-mail field on register form (default there is username and e-mail)
+        registerEmailFieldOnly: false,
         // you can pass empty messages object to turn it off
         messages: {
             verifyEmail: 'Verify your e-mail address',
@@ -81,6 +83,7 @@ Meteor.startup(function () {
             validPassword: 'Password should be at least one number, one lowercase and one uppercase letter and at least six characters!',
             validUsername: 'Username should be at least 3 characters long and max 12 characters!',
             // placeholders
+            loginNamePlaceholder: 'Username or E-mail',
             usernamePlaceholder: 'Username',
             passwordPlaceholder: 'Password',
             emailPlaceholder: 'E-mail',
@@ -334,6 +337,12 @@ Meteor.startup(function () {
 ```
 
 ### Changelog
+
+- v3.1.0 registerEmailFieldOnly option see: [#3](https://github.com/juliancwirko/meteor-s-id/issues/3)
+
+- v3.0.2 versions bump
+
+- v3.0.1 versions bump
 
 - v3.0.0 added email verification option, added messages config, added validators config, docs changes
 
