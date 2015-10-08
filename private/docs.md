@@ -2,11 +2,10 @@
 
 This is a simple and custom Accounts system with config file. It is not dependant on routing, but there are examples how to configure your routes with Iron Router and Flow Router. You can configure your alerts/messages, validators and callback functions.
 
-### Demo
+### Some links
 
-(With minimal styling, but you can do this very simple by adding your own css classes)
-
-[s-id-demo.meteor.com](http://s-id-demo.meteor.com/)
+- [Meteor Accounts based on sId package - blog post](http://julian.io/meteor-accounts-based-on-sid-package/)
+- [Demo app](http://s-id-demo.meteor.com/)
 
 ### Usage example in Scotty boilerplate
 
