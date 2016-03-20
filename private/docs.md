@@ -5,7 +5,7 @@ This is a simple and custom Accounts system with config file. It is not dependan
 ### Some links
 
 - [Meteor Accounts based on sId package - blog post](http://julian.io/meteor-accounts-based-on-sid-package/)
-- [Demo app](http://s-id-demo.meteor.com/)
+- [Demo app](http://s-id-demo.meteorapp.com/)
 
 ### Usage example in Scotty boilerplate
 
@@ -253,8 +253,6 @@ You can generate your API keys on these sites:
 
 Then you should run your app with:
 `meteor --settings settings.json`
-and you can also deploy it with:
-`meteor deploy --settings settings.json your-app.meteor.com`
 
 You will find more in Meteor Docs.
 
@@ -319,13 +317,13 @@ There will be more customization in the future. For now you can use 'mainClass' 
 
 You can take the package style.css file as a reference.
 
-It is also integrated with [s-alert](http://s-alert.meteor.com) notifications
+It is also integrated with [s-alert](http://s-alert.meteorapp.com) notifications
 
 If you want you can play with excelent package for overwriting templates: [aldeed:template-extension](https://atmospherejs.com/aldeed/template-extension)
 
 ### Sending Emails
 
-You can configure Mailgun with Meteor. It is very simple. If you will deploy on meteor.com there should be Mailgun configured.
+You can configure Mailgun with Meteor.
 
 Example:
 
@@ -369,11 +367,12 @@ $ meteor
 
 ### Check out other tools for Meteor:
 
+* [SimpleChat.Support - Open Source Live Chat App built with Meteor](https://www.simplechat.support)
 * [Prettify and export your raw git diff output](https://atmospherejs.com/juliancwirko/pretty-diff)
 * [Foundation 5 with Scss for Meteor](https://atmospherejs.com/juliancwirko/zf5)
 * [Stylus, Flexbox grid system](https://atmospherejs.com/juliancwirko/s-grid)
 * [Stylus with Jeet, Autoprefixer, Rupture and Nib for Meteor](https://atmospherejs.com/juliancwirko/s-jeet)
-* [Notifications for Meteor](http://s-alert.meteor.com)
+* [Notifications for Meteor](http://s-alert.meteorapp.com)
 * [Scotty - Meteor boilerplate](https://github.com/juliancwirko/scotty)
 * [Meteor CylonJS wrapper for Arduino board](https://atmospherejs.com/juliancwirko/caprica)
 
