@@ -7,7 +7,6 @@
 markdown
 simple:highlight.js
 reactive-var
-standard-minifiers
 meteor-base
 mobile-experience
 mongo
@@ -22,3 +21,5 @@ ejson
 spacebars
 check
 juliancwirko:s-grid
+standard-minifier-css
+standard-minifier-js

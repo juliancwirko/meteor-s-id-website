@@ -70,6 +70,8 @@ Meteor.startup(function () {
         emailVerification: true,
         // change it to 'true' if you need only e-mail field on register form (default there is username and e-mail)
         registerEmailFieldOnly: false,
+        // you can turn on and off autologin after user creation - in default turned on
+        autoLoginAfterRegistration: true,
         // you can pass empty messages object to turn it off
         messages: {
             verifyEmail: 'Verify your e-mail address',
@@ -333,22 +335,21 @@ Meteor.startup(function () {
 });
 ```
 
+### Apps using it:
+
+- [SimpleChat.Support - Open Source Live Chat](https://www.simplechat.support)
+- [ReleCheck - Track your favourite app's updates](http://www.relecheck.com)
+
 ### Changelog
 
+- v3.1.2 - v3.1.3 - new option `autoLoginAfterRegistration` [#4](https://github.com/juliancwirko/meteor-s-id/issues/4)
 - v3.1.0 registerEmailFieldOnly option see: [#3](https://github.com/juliancwirko/meteor-s-id/issues/3)
-
 - v3.0.2 versions bump
-
 - v3.0.1 versions bump
-
 - v3.0.0 added email verification option, added messages config, added validators config, docs changes
-
 - v2.0.0 added Facebook service (thanks to [@yankeyhotel](https://github.com/yankeyhotel)), settings.json structure changed (see example above)
-
 - v1.0.2 fix forgot password link usage
-
 - v1.0.1 fix onLogged() callback with external services like Google etc.
-
 - v1.0.0 is not depended on Iron Router anymore. You should use templates and make your own routes (example above). You can use onLogged, onRegistered, onForgotPassword, onResetPassword callbacks in config to make (for example) redirections.
 
 ### License
